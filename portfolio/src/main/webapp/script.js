@@ -26,3 +26,14 @@ function addRandomGreeting() {
   const greetingContainer = document.getElementById('greeting-container');
   greetingContainer.innerText = greeting;
 }
+
+function randomXDQuote(){
+    const quotes = 
+        ['say hello to my little friend', 'lil swallow?(parks and rec)', 'and thats on period POOH!'];
+    //Pick a random quote
+    const quote = quotes[Math.floor(Math.random() * quotes.length)];
+
+    //Add 2 page
+    const quoteContainer = document.getElementById('greeting-container');
+    quoteContainer.innerText = quote;
+}
