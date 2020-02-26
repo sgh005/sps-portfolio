@@ -27,13 +27,13 @@ function addRandomGreeting() {
   greetingContainer.innerText = greeting;
 }
 
-function randomXDQuote(){
-    const quotes = 
-        ['say hello to my little friend', 'lil swallow?(parks and rec)', 'and thats on period POOH!'];
+function music(){
+    const songs = 
+        ['The Night Has Opened My Eyes - The Smiths', 'Wild Irish Roses - Smino', 'Lost in the World - Kanye West' , 'Te Metiste - Ariel Camacho'];
     //Pick a random quote
-    const quote = quotes[Math.floor(Math.random() * quotes.length)];
+    const song = songs[Math.floor(Math.random() * songs.length)];
 
     //Add 2 page
     const quoteContainer = document.getElementById('greeting-container');
-    quoteContainer.innerText = quote;
+    quoteContainer.innerText = song;
 }
