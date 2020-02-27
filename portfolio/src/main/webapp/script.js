@@ -37,3 +37,44 @@ function music(){
     const quoteContainer = document.getElementById('greeting-container');
     quoteContainer.innerText = song;
 }
+
+function getData(){
+    console.log('Fetching a data.'); 
+    // The fetch() function returns a Promise because the request is asynchronous.
+    const responsePromise = fetch('/data');
+    // When the request is complete, pass the response into handleResponse().
+    responsePromise.then(handleResponse);
+}
+
+/**
+ * Handles response by converting it to text and passing the result to
+ * addQuoteToDom().
+ */
+function handleResponse(response) {
+  console.log('Handling the response.');
+
+  // response.text() returns a Promise, because the response is a stream of
+  // content and not a simple variable.
+  const textPromise = response.text();
+
+  // When the response is converted to text, pass the result into the
+  // addDataToDom() function.
+  textPromise.then(addDataToDom);
+}
+
+/** Adds a random data to the DOM. */
+function addDataToDom(data) {
+  console.log('Adding quote to dom: ' + data);
+
+  const dataContainer = document.getElementById('data-container');
+  dataContainer.innerText = data;
+}
+
+/**
+ * Fetches array from the servers and adds them to the DOM.
+ */
+function getArray() {
+fetch('/data').then(response => response.json()).then((myData) => {
+    const arrayContainer = document.getElementById('array-container');
+    arrayContainer.innerText = myData; });
+}
