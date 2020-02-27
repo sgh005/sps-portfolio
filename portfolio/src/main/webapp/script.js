@@ -69,3 +69,12 @@ function addDataToDom(data) {
   const dataContainer = document.getElementById('data-container');
   dataContainer.innerText = data;
 }
+
+/**
+ * Fetches array from the servers and adds them to the DOM.
+ */
+function getArray() {
+fetch('/data').then(response => response.json()).then((myData) => {
+    const arrayContainer = document.getElementById('array-container');
+    arrayContainer.innerText = myData; });
+}
