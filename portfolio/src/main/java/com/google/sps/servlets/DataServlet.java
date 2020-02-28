@@ -14,6 +14,8 @@
 
 package com.google.sps.servlets;
 
+import java.util.ArrayList;
+import com.google.gson.Gson;
 import java.io.IOException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,10 +25,32 @@ import javax.servlet.http.HttpServletResponse;
 /** Servlet that returns some example content. TODO: modify this file to handle comments data */
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
+  
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    //arraylist
+    ArrayList<String> toDo = new ArrayList<String>();
+    toDo.add("Lab 4");
+    toDo.add("HW4");
+    toDo.add("PA4");
     response.setContentType("text/html;");
-    response.getWriter().println("Hey Steph! What up?");
+        
+    //convert my arraylist to JSON
+    String json = convertToJsonUsingGson(toDo);
+
+    // Send the JSON as the response
+    response.setContentType("application/json;");
+    response.getWriter().println(json);
+  }
+
+  /**
+   * Converts an arraylist into a JSON string using the Gson library. Note: We first added
+   * the Gson library dependency to pom.xml.
+   */
+  private String convertToJsonUsingGson(ArrayList<String> myArray) {
+    Gson gson = new Gson();
+    String json = gson.toJson(myArray);
+    return json;
   }
 }
