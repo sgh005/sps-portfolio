@@ -35,15 +35,13 @@ public class DataServlet extends HttpServlet {
     toDo.add("HW4");
     toDo.add("PA4");
     response.setContentType("text/html;");
-    //response.getWriter().println("Hey Steph! What up?");
-    
+        
     //convert my arraylist to JSON
     String json = convertToJsonUsingGson(toDo);
 
     // Send the JSON as the response
     response.setContentType("application/json;");
     response.getWriter().println(json);
-
   }
 
   /**
