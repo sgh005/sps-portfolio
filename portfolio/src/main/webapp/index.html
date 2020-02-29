@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
   </head>
-  <body>
+  <body onload = "getComments()">
     <div id="content">
         <center>
             <h1>This is Me!</h1>
@@ -53,6 +53,16 @@
             <p> Array about to print (; </p>
             <button onclick="getArray()">Let's see the array!</button>
             <div id="array-container"></div>
+
+            <h3> Comments Section! </h3>
+            <ul id = "history"></ul>
+            <form action = "/data" method = "POST">
+                <p>Comment Below:</p>
+                <input type = "comment" name = "newComment">
+                <br/><br/>
+                <input type = "submit"/>
+            </form>
+
         </center>
         <center>
         <p>Click mini me below to actually view pics of me!!</p>

@@ -25,25 +25,26 @@ import javax.servlet.http.HttpServletResponse;
 /** Servlet that returns some example content. TODO: modify this file to handle comments data */
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
-  
-
+    //arraylist
+    ArrayList<String> comments = new ArrayList<String>();
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    //arraylist
-    ArrayList<String> toDo = new ArrayList<String>();
-    toDo.add("Lab 4");
-    toDo.add("HW4");
-    toDo.add("PA4");
-    response.setContentType("text/html;");
-        
     //convert my arraylist to JSON
-    String json = convertToJsonUsingGson(toDo);
+    String json = convertToJsonUsingGson(comments);
 
     // Send the JSON as the response
     response.setContentType("application/json;");
     response.getWriter().println(json);
   }
 
+  @Override
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String comment = request.getParameter("newComment");
+        response.setContentType("text/html;");
+        comments.add(comment);
+        response.getWriter().println(comment);
+        response.sendRedirect("/index.html");
+    }
   /**
    * Converts an arraylist into a JSON string using the Gson library. Note: We first added
    * the Gson library dependency to pom.xml.

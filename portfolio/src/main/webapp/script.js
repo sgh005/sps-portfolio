@@ -78,3 +78,20 @@ fetch('/data').then(response => response.json()).then((myData) => {
     const arrayContainer = document.getElementById('array-container');
     arrayContainer.innerText = myData; });
 }
+
+/*
+ * Fetches the comments array and adds each element to the history 
+ * unordered list on the homepage 
+ */
+ function getComments(){
+     fetch('/data').then(response => response.json()).then((comment) => {
+        const historyEl = document.getElementById('history');
+        console.log(comment + " and " + comment.length);
+        for(i=0; i<comment.length; i++){
+            const liElement = document.createElement('li');
+            liElement.innerText = comment[i];
+            console.log("appending " + liElement);
+            historyEl.appendChild(liElement);
+        }
+    });
+ }
