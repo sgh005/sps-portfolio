@@ -87,17 +87,17 @@ fetch('/data').then(response => response.json()).then((myData) => {
      fetch('/data').then(response => response.json()).then((comments) => {
         const historyEl = document.getElementById('history');
         console.log(comments + " and " + comments.length);
-        addCommentToDom(historyEl, comments);
+        for(i=0; i<comments.length; i++){
+            addCommentToDom(historyEl, comments[i]);
+        }
     });
  }
 
  /*
-  * Creates elements out of array to add to page in an unordered list
+  * Adds comment to the element in param
   */
-function addCommentToDom(element, commentArray){
-    for(i=0; i<commentArray.length; i++){
-        const liElement = document.createElement('li');
-        liElement.innerText = commentArray[i];
-        element.appendChild(liElement);
-    }
+function addCommentToDom(element, comment){
+    const liElement = document.createElement('li');
+    liElement.innerText = comment;
+    element.appendChild(liElement);
 }
