@@ -81,17 +81,23 @@ fetch('/data').then(response => response.json()).then((myData) => {
 
 /*
  * Fetches the comments array and adds each element to the history 
- * unordered list on the homepage 
+ * unordered list on the homepage by calling addCommentToDom
  */
  function getComments(){
-     fetch('/data').then(response => response.json()).then((comment) => {
+     fetch('/data').then(response => response.json()).then((comments) => {
         const historyEl = document.getElementById('history');
-        console.log(comment + " and " + comment.length);
-        for(i=0; i<comment.length; i++){
-            const liElement = document.createElement('li');
-            liElement.innerText = comment[i];
-            console.log("appending " + liElement);
-            historyEl.appendChild(liElement);
-        }
+        console.log(comments + " and " + comments.length);
+        addCommentToDom(historyEl, comments);
     });
  }
+
+ /*
+  * Creates elements out of array to add to page in an unordered list
+  */
+function addCommentToDom(element, commentArray){
+    for(i=0; i<commentArray.length; i++){
+        const liElement = document.createElement('li');
+        liElement.innerText = commentArray[i];
+        element.appendChild(liElement);
+    }
+}
