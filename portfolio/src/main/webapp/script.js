@@ -78,3 +78,26 @@ fetch('/data').then(response => response.json()).then((myData) => {
     const arrayContainer = document.getElementById('array-container');
     arrayContainer.innerText = myData; });
 }
+
+/*
+ * Fetches the comments array and adds each element to the history 
+ * unordered list on the homepage by calling addCommentToDom
+ */
+ function getComments(){
+     fetch('/data').then(response => response.json()).then((comments) => {
+        const historyEl = document.getElementById('history');
+        console.log(comments + " and " + comments.length);
+        for(i=0; i<comments.length; i++){
+            addCommentToDom(historyEl, comments[i]);
+        }
+    });
+ }
+
+ /*
+  * Adds comment to the element in param
+  */
+function addCommentToDom(element, comment){
+    const liElement = document.createElement('li');
+    liElement.innerText = comment;
+    element.appendChild(liElement);
+}
