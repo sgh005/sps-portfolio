@@ -42,6 +42,7 @@ function getData(){
     console.log('Fetching a data.'); 
     // The fetch() function returns a Promise because the request is asynchronous.
     const responsePromise = fetch('/data');
+    console.log("fetching data!")
     // When the request is complete, pass the response into handleResponse().
     responsePromise.then(handleResponse);
 }
@@ -87,9 +88,11 @@ fetch('/data').then(response => response.json()).then((myData) => {
      fetch('/data').then(response => response.json()).then((comments) => {
         const historyEl = document.getElementById('history');
         console.log(comments + " and " + comments.length);
+        addCommentToDom(historyEl, comments[comments.length-1]);
+        /*
         for(i=0; i<comments.length; i++){
             addCommentToDom(historyEl, comments[i]);
-        }
+        }*/
     });
  }
 
@@ -100,4 +103,10 @@ function addCommentToDom(element, comment){
     const liElement = document.createElement('li');
     liElement.innerText = comment;
     element.appendChild(liElement);
+}
+/** Creates a map and adds it to the page. */
+function createMap() {
+  const map = new google.maps.Map(
+      document.getElementById('map'),
+      {center: {lat: 37.422, lng: -122.084}, zoom: 16});
 }
